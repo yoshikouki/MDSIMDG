@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 
 const Editor: React.FC = () => {
-  const [text, setText] = useState("");
+  const [markdownInput, setMarkdownInput] = useState("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value);
+  const onInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setMarkdownInput(event.target.value);
   };
 
   return (
-    <div className="editor-container">
+    <div className="mdsimdg-container">
       <textarea
-        className="editor-textarea"
-        value={text}
-        onChange={handleInputChange}
+        value={markdownInput}
+        onChange={onInputChange}
+        placeholder="Type your Markdown here..."
+        className="mdsimdg-textarea"
       />
     </div>
   );
