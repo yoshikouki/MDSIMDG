@@ -1,28 +1,49 @@
-import React, { useState } from "react";
-import { convertMarkdownToHtml } from "../../lib/markdown";
+"use client";
 
-const Editor: React.FC = () => {
-  const [markdownInput, setMarkdownInput] = useState("");
+import React, { ComponentProps, FC } from "react";
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { AutoFocusPlugin } from "./AutoFocusPlugin";
 
-  const onInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMarkdownInput(event.target.value);
+const onError = (error: Error) => console.error(error);
+
+type DefaultInitialConfig = ComponentProps<
+  typeof LexicalComposer
+>["initialConfig"];
+const defaultInitialConfig: DefaultInitialConfig = {
+  namespace: "MDSIMDG",
+  onError,
+};
+
+type RichTextPluginProps = ComponentProps<typeof RichTextPlugin>;
+
+export type EditorProps = {
+  initialConfig?: DefaultInitialConfig;
+  richTextPluginProps?: RichTextPluginProps;
+};
+
+const Editor: React.FC = (editorProps: EditorProps) => {
+  const initialConfig = {
+    ...defaultInitialConfig,
+    ...editorProps.initialConfig,
   };
 
-  const htmlOutput = convertMarkdownToHtml(markdownInput);
+  const richTextPluginProps: RichTextPluginProps = {
+    contentEditable: <ContentEditable />,
+    placeholder: <div>心に残っていることは何です？</div>,
+    ErrorBoundary: LexicalErrorBoundary,
+    ...editorProps.richTextPluginProps,
+  };
 
   return (
-    <div className="mdsimdg-container">
-      <textarea
-        value={markdownInput}
-        onChange={onInputChange}
-        placeholder="Type your Markdown here..."
-        className="mdsimdg-textarea"
-      />
-      <div
-        dangerouslySetInnerHTML={{ __html: htmlOutput }}
-        className="mdsimdg-preview"
-      />
-    </div>
+    <LexicalComposer initialConfig={initialConfig}>
+      <RichTextPlugin {...richTextPluginProps} />
+      <HistoryPlugin />
+      <AutoFocusPlugin />
+    </LexicalComposer>
   );
 };
 
