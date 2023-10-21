@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { convertMarkdownToHtml } from "../../lib/markdown";
 
 const Editor: React.FC = () => {
   const [markdownInput, setMarkdownInput] = useState("");
@@ -7,6 +8,8 @@ const Editor: React.FC = () => {
     setMarkdownInput(event.target.value);
   };
 
+  const htmlOutput = convertMarkdownToHtml(markdownInput);
+
   return (
     <div className="mdsimdg-container">
       <textarea
@@ -14,6 +17,10 @@ const Editor: React.FC = () => {
         onChange={onInputChange}
         placeholder="Type your Markdown here..."
         className="mdsimdg-textarea"
+      />
+      <div
+        dangerouslySetInnerHTML={{ __html: htmlOutput }}
+        className="mdsimdg-preview"
       />
     </div>
   );
