@@ -1,12 +1,14 @@
 "use client";
 
-import React, { ComponentProps, FC } from "react";
+import React, { ComponentProps, FC, useState } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { AutoFocusPlugin } from "./AutoFocusPlugin";
+import { OnChangePlugin } from "./OnChangePlugin";
+import { UpdateListener } from "lexical/LexicalEditor";
 
 const onError = (error: Error) => console.error(error);
 
@@ -18,11 +20,15 @@ const defaultInitialConfig: DefaultInitialConfig = {
   onError,
 };
 
-type RichTextPluginProps = ComponentProps<typeof RichTextPlugin>;
+export type RichTextPluginProps = ComponentProps<typeof RichTextPlugin>;
+export type OnChangePluginProps = {
+  onChange: UpdateListener;
+};
 
 export type EditorProps = {
   initialConfig?: DefaultInitialConfig;
   richTextPluginProps?: RichTextPluginProps;
+  onChange?: OnChangePluginProps;
 };
 
 const Editor: React.FC = (editorProps: EditorProps) => {
@@ -38,11 +44,18 @@ const Editor: React.FC = (editorProps: EditorProps) => {
     ...editorProps.richTextPluginProps,
   };
 
+    const [editorState, setEditorState] = useState<string | null>(null);
+    const onChange: OnChangePluginProps["onChange"] = (props) => {
+      const editorStateJSON = props.editorState.toJSON();
+      setEditorState(JSON.stringify(editorStateJSON));
+    };
+
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <RichTextPlugin {...richTextPluginProps} />
       <HistoryPlugin />
       <AutoFocusPlugin />
+      <OnChangePlugin onChange={onChange} />
     </LexicalComposer>
   );
 };
