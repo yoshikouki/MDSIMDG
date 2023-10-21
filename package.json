@@ -14,7 +14,8 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
-    "remark": "^15.0.1"
+    "@lexical/react": "^0.12.2",
+    "lexical": "^0.12.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.5.1",
