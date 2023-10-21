@@ -2,9 +2,9 @@
   "name": "mdsimdg",
   "version": "0.0.1",
   "description": "MDSIMDG is a user-friendly Markdown WYSIWYG editor designed with a focus on simplicity and extensibility. Whether you are new to Markdown or a seasoned user, MDSIMDG provides an effortless composing experience, allowing everyone to visualize their content seamlessly. Simply compose, simply visualize—a Markdown WYSIWYG editor for everyone.",
-  "main": "index.js",
   "scripts": {
     "build": "vite build",
+    "prepare": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -29,7 +29,18 @@
     "storybook": "^7.5.1",
     "vite": "^4.5.0"
   },
+  "main": "dist/mdsimdg.es.js",
+  "module": "dist/mdsimdg.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  }
 }
