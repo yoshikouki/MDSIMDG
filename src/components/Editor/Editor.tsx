@@ -6,10 +6,10 @@ import { RichTextPlugin as LexicalRichTextPlugin } from "@lexical/react/LexicalR
 import { UpdateListener } from "lexical/LexicalEditor";
 import React, { ComponentProps } from "react";
 import { AutoFocusPlugin } from "./AutoFocusPlugin";
+import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
 import { OnChangePlugin } from "./OnChangePlugin";
 import { RichTextPlugin } from "./RichTextPlugin";
-import "./editor.css";
 
 export type InitialConfig = ComponentProps<
   typeof LexicalComposer
@@ -32,10 +32,12 @@ const Editor: React.FC = ({
   return (
     <EditorProvider initialConfig={initialConfig}>
       <div className="editor-shell">
-        <RichTextPlugin {...richTextPluginProps} />
-        <HistoryPlugin />
-        <AutoFocusPlugin />
-        <OnChangePlugin />
+        <div className="editor-container">
+          <RichTextPlugin {...richTextPluginProps} />
+          <HistoryPlugin />
+          <AutoFocusPlugin />
+          <OnChangePlugin />
+        </div>
       </div>
     </EditorProvider>
   );
