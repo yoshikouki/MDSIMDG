@@ -13,7 +13,6 @@
   padding: 0 1rem;
   max-width: 1100px;
   position: relative;
-  border-radius: 4px;
   line-height: 1.7;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular',
     sans-serif;
@@ -26,29 +25,16 @@
 .editor-shell .editor-container {
   position: relative;
   display: block;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   box-sizing: border-box;
 }
 
-.editor-shell .editor-container.tree-view {
-  border-radius: 0;
-}
-
-.editor-shell .editor-container.plain-text {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-
 .editor-scroller {
-  min-height: 150px;
   border: 0;
   display: flex;
   position: relative;
   outline: 0;
   z-index: 0;
   overflow: auto;
-  resize: vertical;
 }
 
 .editor {
@@ -73,19 +59,6 @@ pre {
   font-size: 12px;
   overflow: auto;
   max-height: 400px;
-}
-
-.tree-view-output {
-  display: block;
-  background: #222;
-  color: #fff;
-  padding: 0;
-  font-size: 12px;
-  margin: 1px auto 10px auto;
-  position: relative;
-  overflow: hidden;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
 }
 
 pre::-webkit-scrollbar {
@@ -941,11 +914,6 @@ i.page-break,
   cursor: grabbing;
 }
 
-.editor-shell .editor-image .image-caption-container .tree-view-output {
-  margin: 0;
-  border-radius: 0;
-}
-
 .editor-shell .editor-image .image-caption-container {
   display: block;
   position: absolute;
@@ -1085,11 +1053,6 @@ i.page-break,
   cursor: grabbing;
 }
 
-.editor-shell .inline-editor-image .image-caption-container .tree-view-output {
-  margin: 0;
-  border-radius: 0;
-}
-
 .editor-shell .inline-editor-image.position-full {
   margin: 1em 0 1em 0;
 }
@@ -1185,11 +1148,6 @@ i.page-break,
   margin: 10px;
   bottom: 0;
   right: 0;
-}
-
-.actions.tree-view {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
 }
 
 .actions i {
