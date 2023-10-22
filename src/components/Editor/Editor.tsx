@@ -9,6 +9,7 @@ import { AutoFocusPlugin } from "./AutoFocusPlugin";
 import { EditorProvider } from "./EditorProvider";
 import { OnChangePlugin } from "./OnChangePlugin";
 import { RichTextPlugin } from "./RichTextPlugin";
+import "./editor.css";
 
 export type InitialConfig = ComponentProps<
   typeof LexicalComposer
@@ -30,10 +31,12 @@ const Editor: React.FC = ({
 }: EditorProps) => {
   return (
     <EditorProvider initialConfig={initialConfig}>
-      <RichTextPlugin {...richTextPluginProps} />
-      <HistoryPlugin />
-      <AutoFocusPlugin />
-      <OnChangePlugin />
+      <div className="editor-shell">
+        <RichTextPlugin {...richTextPluginProps} />
+        <HistoryPlugin />
+        <AutoFocusPlugin />
+        <OnChangePlugin />
+      </div>
     </EditorProvider>
   );
 };
