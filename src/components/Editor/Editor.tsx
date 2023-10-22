@@ -1,11 +1,11 @@
 "use client";
 
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin as LexicalRichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { UpdateListener } from "lexical/LexicalEditor";
 import React, { ComponentProps } from "react";
-import { AutoFocusPlugin } from "./AutoFocusPlugin";
 import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
 import { OnChangePlugin } from "./OnChangePlugin";
