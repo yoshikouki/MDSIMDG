@@ -1,62 +1,40 @@
 "use client";
 
-import React, { ComponentProps, FC, useState } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
-import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
-import { AutoFocusPlugin } from "./AutoFocusPlugin";
-import { OnChangePlugin } from "./OnChangePlugin";
+import { RichTextPlugin as LexicalRichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { UpdateListener } from "lexical/LexicalEditor";
+import React, { ComponentProps } from "react";
+import { AutoFocusPlugin } from "./AutoFocusPlugin";
+import { EditorProvider } from "./EditorProvider";
+import { OnChangePlugin } from "./OnChangePlugin";
+import { RichTextPlugin } from "./RichTextPlugin";
 
-const onError = (error: Error) => console.error(error);
-
-type DefaultInitialConfig = ComponentProps<
+export type InitialConfig = ComponentProps<
   typeof LexicalComposer
 >["initialConfig"];
-const defaultInitialConfig: DefaultInitialConfig = {
-  namespace: "MDSIMDG",
-  onError,
-};
-
-export type RichTextPluginProps = ComponentProps<typeof RichTextPlugin>;
+export type RichTextPluginProps = ComponentProps<typeof LexicalRichTextPlugin>;
 export type OnChangePluginProps = {
   onChange: UpdateListener;
 };
 
 export type EditorProps = {
-  initialConfig?: DefaultInitialConfig;
+  initialConfig?: InitialConfig;
   richTextPluginProps?: RichTextPluginProps;
   onChange?: OnChangePluginProps;
 };
 
-const Editor: React.FC = (editorProps: EditorProps) => {
-  const initialConfig = {
-    ...defaultInitialConfig,
-    ...editorProps.initialConfig,
-  };
-
-  const richTextPluginProps: RichTextPluginProps = {
-    contentEditable: <ContentEditable />,
-    placeholder: <div>心に残っていることは何です？</div>,
-    ErrorBoundary: LexicalErrorBoundary,
-    ...editorProps.richTextPluginProps,
-  };
-
-    const [editorState, setEditorState] = useState<string | null>(null);
-    const onChange: OnChangePluginProps["onChange"] = (props) => {
-      const editorStateJSON = props.editorState.toJSON();
-      setEditorState(JSON.stringify(editorStateJSON));
-    };
-
+const Editor: React.FC = ({
+  initialConfig,
+  richTextPluginProps,
+}: EditorProps) => {
   return (
-    <LexicalComposer initialConfig={initialConfig}>
+    <EditorProvider initialConfig={initialConfig}>
       <RichTextPlugin {...richTextPluginProps} />
       <HistoryPlugin />
       <AutoFocusPlugin />
-      <OnChangePlugin onChange={onChange} />
-    </LexicalComposer>
+      <OnChangePlugin />
+    </EditorProvider>
   );
 };
 

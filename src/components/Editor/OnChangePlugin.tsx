@@ -1,11 +1,19 @@
 "use client";
 
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { OnChangePluginProps } from "./Editor";
 
-export const OnChangePlugin = ({ onChange }: OnChangePluginProps) => {
+export const OnChangePlugin = () => {
   const [editor] = useLexicalComposerContext();
+  const [editorState, setEditorState] = useState<string | null>(null);
+
+  const onChange: OnChangePluginProps["onChange"] = (props) => {
+    const editorStateJSON = props.editorState.toJSON();
+    console.log(JSON.stringify(editorStateJSON, null, 2));
+    setEditorState(JSON.stringify(editorStateJSON));
+  };
+  console.log(editorState);
 
   // Wrap our listener in useEffect to handle the teardown and avoid stale references.
   useEffect(() => {
@@ -17,4 +25,4 @@ export const OnChangePlugin = ({ onChange }: OnChangePluginProps) => {
   }, [editor, onChange]);
 
   return null;
-}
+};
