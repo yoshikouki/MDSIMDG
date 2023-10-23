@@ -1,13 +1,18 @@
 "use client";
 
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { RichTextPlugin as LexicalRichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { UpdateListener } from "lexical/LexicalEditor";
 import React, { ComponentProps } from "react";
 import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
+import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
+import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
 import MarkdownShortcutPlugin from "./plugins/MarkdownShortcutPlugin";
 import { OnChangePlugin } from "./plugins/OnChangePlugin";
 import { RichTextPlugin } from "./plugins/RichTextPlugin";
@@ -40,6 +45,11 @@ const Editor: React.FC = ({
           <OnChangePlugin />
 
           <MarkdownShortcutPlugin />
+          <AutoLinkPlugin />
+          <CodeHighlightPlugin />
+          <ListPlugin />
+          <CheckListPlugin />
+          <TablePlugin hasCellMerge={true} hasCellBackgroundColor={false} />
         </div>
       </div>
     </EditorProvider>
