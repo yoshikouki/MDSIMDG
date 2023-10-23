@@ -12,7 +12,10 @@ type Props = {
 
 const defaultInitialConfig: InitialConfig = {
   namespace: "MDSIMDG",
-  onError: (error: Error) => console.error(error),
+  onError: (error: Error) => {
+    console.error(error);
+    throw error;
+  },
   nodes: Nodes,
 };
 
