@@ -8,6 +8,7 @@ import { UpdateListener } from "lexical/LexicalEditor";
 import React, { ComponentProps } from "react";
 import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
+import MarkdownShortcutPlugin from "./MarkdownShortcutPlugin";
 import { OnChangePlugin } from "./OnChangePlugin";
 import { RichTextPlugin } from "./RichTextPlugin";
 
@@ -37,6 +38,8 @@ const Editor: React.FC = ({
           <HistoryPlugin />
           <AutoFocusPlugin />
           <OnChangePlugin />
+
+          <MarkdownShortcutPlugin />
         </div>
       </div>
     </EditorProvider>
