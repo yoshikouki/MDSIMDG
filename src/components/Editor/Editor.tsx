@@ -8,9 +8,9 @@ import { UpdateListener } from "lexical/LexicalEditor";
 import React, { ComponentProps } from "react";
 import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
-import MarkdownShortcutPlugin from "./MarkdownShortcutPlugin";
-import { OnChangePlugin } from "./OnChangePlugin";
-import { RichTextPlugin } from "./RichTextPlugin";
+import MarkdownShortcutPlugin from "./plugins/MarkdownShortcutPlugin";
+import { OnChangePlugin } from "./plugins/OnChangePlugin";
+import { RichTextPlugin } from "./plugins/RichTextPlugin";
 
 export type InitialConfig = ComponentProps<
   typeof LexicalComposer

@@ -3,7 +3,7 @@
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import React from "react";
 import { InitialConfig } from "./Editor";
-import Nodes from "./Nodes";
+import nodes from "./nodes";
 
 type Props = {
   initialConfig?: InitialConfig;
@@ -16,7 +16,7 @@ const defaultInitialConfig: InitialConfig = {
     console.error(error);
     throw error;
   },
-  nodes: Nodes,
+  nodes,
 };
 
 export const EditorProvider = (props: Props) => {

@@ -2,7 +2,7 @@
 
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useEffect, useState } from "react";
-import { OnChangePluginProps } from "./Editor";
+import { OnChangePluginProps } from "../Editor";
 
 export const OnChangePlugin = () => {
   const [editor] = useLexicalComposerContext();

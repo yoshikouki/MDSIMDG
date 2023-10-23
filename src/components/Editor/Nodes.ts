@@ -10,7 +10,7 @@ import { HeadingNode, QuoteNode } from "@lexical/rich-text";
 import { TableCellNode, TableNode, TableRowNode } from "@lexical/table";
 import type { Klass, LexicalNode } from "lexical";
 
-const Nodes: Array<Klass<LexicalNode>> = [
+const nodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
   ListNode,
   ListItemNode,
@@ -27,4 +27,4 @@ const Nodes: Array<Klass<LexicalNode>> = [
   // HashtagNode,
 ];
 
-export default Nodes;
+export default nodes;
