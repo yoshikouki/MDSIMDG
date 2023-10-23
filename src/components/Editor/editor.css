@@ -43,6 +43,10 @@
   resize: vertical;
   z-index: -1;
   box-sizing: border-box;
+  :focus {
+    outline: none;
+    border: none;
+  }
 }
 
 .test-recorder-output {
