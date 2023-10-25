@@ -1685,13 +1685,13 @@ hr.selected {
   z-index: 3;
 }
 
-.PlaygroundEditorTheme__blockCursor {
+.EditorTheme__blockCursor {
   display: block;
   pointer-events: none;
   position: absolute;
 }
 
-.PlaygroundEditorTheme__blockCursor:after {
+.EditorTheme__blockCursor:after {
   content: '';
   display: block;
   position: absolute;
