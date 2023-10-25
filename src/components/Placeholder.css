@@ -8,16 +8,18 @@
  */
 
 .Placeholder__root {
-  font-size: 15px;
-  color: #999;
-  overflow: hidden;
+  display: inline-block;
   position: absolute;
-  text-overflow: ellipsis;
-  top: 1em;
-  left: 0px;
-  right: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  pointer-events: none;
   user-select: none;
   white-space: nowrap;
-  display: inline-block;
-  pointer-events: none;
+  font-size: 1rem;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
 }

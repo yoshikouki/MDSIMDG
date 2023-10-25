@@ -39,6 +39,7 @@
   flex: auto;
   position: relative;
   resize: vertical;
+  margin-top: 1rem;
   z-index: -1;
   box-sizing: border-box;
   :focus {
