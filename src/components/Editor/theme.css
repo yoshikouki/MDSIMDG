@@ -13,43 +13,37 @@
   text-align: right;
 }
 .EditorTheme__paragraph {
-  margin: 0;
   position: relative;
 }
 .EditorTheme__quote {
-  margin: 0;
-  margin-left: 20px;
-  margin-bottom: 10px;
-  font-size: 15px;
+  margin: 1rem 0;
+  font-size: 0.9rem;
   color: rgb(101, 103, 107);
   border-left-color: rgb(206, 208, 212);
   border-left-width: 4px;
   border-left-style: solid;
-  padding-left: 16px;
+  padding-left: 1rem;
 }
-.EditorTheme__h1 {
-  font-size: 24px;
+h1.EditorTheme__h1 {
+  font-size: 2rem;
   color: rgb(5, 5, 5);
-  font-weight: 400;
-  margin: 0;
+  margin-top: 2rem
 }
-.EditorTheme__h2 {
-  font-size: 15px;
-  color: rgb(101, 103, 107);
+h2.EditorTheme__h2 {
+  font-size: 1.5rem;
   font-weight: 700;
-  margin: 0;
-  text-transform: uppercase;
+  margin-top: 1.6rem
 }
-.EditorTheme__h3 {
-  font-size: 12px;
-  margin: 0;
-  text-transform: uppercase;
+h3.EditorTheme__h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 1.2rem
 }
 .EditorTheme__indent {
-  --lexical-indent-base-value: 40px;
+  --lexical-indent-base-value: 1rem;
 }
 .EditorTheme__textBold {
-  font-weight: bold;
+  font-weight: 800;
 }
 .EditorTheme__textItalic {
   font-style: italic;
@@ -64,18 +58,18 @@
   text-decoration: underline line-through;
 }
 .EditorTheme__textSubscript {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   vertical-align: sub !important;
 }
 .EditorTheme__textSuperscript {
-  font-size: 0.8em;
+  font-size: 0.8rem;
   vertical-align: super;
 }
 .EditorTheme__textCode {
   background-color: rgb(240, 242, 245);
-  padding: 1px 0.25rem;
+  padding: 0.2rem 0.4rem;
   font-family: Menlo, Consolas, Monaco, monospace;
-  font-size: 94%;
+  font-size: 0.88rem;
 }
 .EditorTheme__hashtag {
   background-color: rgba(88, 144, 255, 0.15);
@@ -89,41 +83,28 @@
   text-decoration: underline;
   cursor: pointer;
 }
-.EditorTheme__code {
+code.EditorTheme__code {
   background-color: rgb(240, 242, 245);
   font-family: Menlo, Consolas, Monaco, monospace;
   display: block;
-  padding: 8px 8px 8px 52px;
+  margin: 1rem 0;
+  padding: 1.6rem 1rem;
   line-height: 1.53;
-  font-size: 13px;
-  margin: 0;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  font-size: 0.88rem;
   overflow-x: auto;
   position: relative;
   tab-size: 2;
 }
-.EditorTheme__code:before {
-  content: attr(data-gutter);
-  position: absolute;
-  background-color: #eee;
-  left: 0;
-  top: 0;
-  border-right: 1px solid #ccc;
-  padding: 8px;
-  color: #777;
-  white-space: pre-wrap;
-  text-align: right;
-  min-width: 25px;
-}
-.EditorTheme__table {
+
+/* Table */
+table.EditorTheme__table {
   border-collapse: collapse;
   border-spacing: 0;
   overflow-y: scroll;
   overflow-x: scroll;
   table-layout: fixed;
   width: max-content;
-  margin: 30px 0;
+  margin: 2rem 1rem;
 }
 .EditorTheme__tableSelection *::selection {
   background-color: transparent;
@@ -132,13 +113,12 @@
   outline: 2px solid rgb(60, 132, 244);
 }
 .EditorTheme__tableCell {
-  border: 1px solid #bbb;
-  width: 75px;
-  min-width: 75px;
+  min-width: 4rem;
+  padding: 0 1rem;
   vertical-align: top;
-  text-align: start;
-  padding: 6px 8px;
   position: relative;
+  text-align: start;
+  border: 0.1px solid #ddd;
   outline: none;
 }
 .EditorTheme__tableCellSortedIndicator {
@@ -275,46 +255,42 @@
 .EditorTheme__tableCellActionButton:hover {
   background-color: #ddd;
 }
-.EditorTheme__characterLimit {
-  display: inline;
-  background-color: #ffbbbb !important;
-}
-.EditorTheme__ol1 {
+
+
+/* List */
+ol.EditorTheme__ol1 {
+  margin: 1rem 1rem;
   padding: 0;
-  margin: 0;
-  list-style-position: inside;
+  list-style-position: outside;
 }
-.EditorTheme__ol2 {
+ol.EditorTheme__ol2 {
   padding: 0;
-  margin: 0;
   list-style-type: upper-alpha;
-  list-style-position: inside;
+  list-style-position: outside;
 }
-.EditorTheme__ol3 {
+ol.EditorTheme__ol3 {
   padding: 0;
-  margin: 0;
   list-style-type: lower-alpha;
-  list-style-position: inside;
+  list-style-position: outside;
 }
-.EditorTheme__ol4 {
+ol.EditorTheme__ol4 {
   padding: 0;
-  margin: 0;
   list-style-type: upper-roman;
-  list-style-position: inside;
+  list-style-position: outside;
 }
-.EditorTheme__ol5 {
+ol.EditorTheme__ol5 {
   padding: 0;
-  margin: 0;
   list-style-type: lower-roman;
-  list-style-position: inside;
+  list-style-position: outside;
 }
-.EditorTheme__ul {
+ul.EditorTheme__ul {
+  margin: 1rem 1rem;
   padding: 0;
-  margin: 0;
-  list-style-position: inside;
+  list-style-position: outside;
 }
 .EditorTheme__listItem {
-  margin: 0 32px;
+  margin-left: 1.2rem;
+  padding-left: 0.2rem;
 }
 .EditorTheme__listItemChecked,
 .EditorTheme__listItemUnchecked {
@@ -382,6 +358,12 @@
 .EditorTheme__nestedListItem:before,
 .EditorTheme__nestedListItem:after {
   display: none;
+}
+
+/* Other */
+.EditorTheme__characterLimit {
+  display: inline;
+  background-color: #ffbbbb !important;
 }
 .EditorTheme__tokenComment {
   color: slategray;

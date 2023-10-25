@@ -9,8 +9,6 @@
 @import 'https://fonts.googleapis.com/css?family=Reenie+Beanie';
 
 .editor-shell {
-  margin: 0;
-  padding: 0 1rem;
   max-width: 1100px;
   position: relative;
   line-height: 1.7;
@@ -47,6 +45,9 @@
     outline: none;
     border: none;
   }
+}
+.editor div > * {
+  margin: 0 1rem;
 }
 
 .test-recorder-output {
