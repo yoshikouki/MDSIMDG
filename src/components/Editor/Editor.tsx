@@ -17,9 +17,10 @@ import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
+import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
+import FloatingTextFormatToolbarPlugin from "./plugins/FloatingTextFormatToolbarPlugin";
 import MarkdownShortcutPlugin from "./plugins/MarkdownShortcutPlugin";
 import { OnChangePlugin } from "./plugins/OnChangePlugin";
-import FloatingTextFormatToolbarPlugin from "./plugins/FloatingTextFormatToolbarPlugin";
 
 export type InitialConfig = ComponentProps<
   typeof LexicalComposer
@@ -46,6 +47,7 @@ const Editor: React.FC = ({
       setFloatingAnchorElem(_floatingAnchorElem);
     }
   };
+  const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false);
 
   return (
     <EditorProvider initialConfig={initialConfig}>
@@ -78,6 +80,11 @@ const Editor: React.FC = ({
           <TablePlugin hasCellMerge={true} hasCellBackgroundColor={false} />
           {floatingAnchorElem && (
             <>
+              <FloatingLinkEditorPlugin
+                anchorElem={floatingAnchorElem}
+                isLinkEditMode={isLinkEditMode}
+                setIsLinkEditMode={setIsLinkEditMode}
+              />
               <FloatingTextFormatToolbarPlugin
                 anchorElem={floatingAnchorElem}
               />
