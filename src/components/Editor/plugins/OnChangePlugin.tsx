@@ -10,10 +10,8 @@ export const OnChangePlugin = () => {
 
   const onChange: OnChangePluginProps["onChange"] = (props) => {
     const editorStateJSON = props.editorState.toJSON();
-    console.log(JSON.stringify(editorStateJSON, null, 2));
     setEditorState(JSON.stringify(editorStateJSON));
   };
-  console.log(editorState);
 
   // Wrap our listener in useEffect to handle the teardown and avoid stale references.
   useEffect(() => {
