@@ -15,8 +15,10 @@ import React, { ComponentProps, useState } from "react";
 import Placeholder from "../Placeholder";
 import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
+import AutoEmbedPlugin from "./plugins/AutoEmbedPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
+import ComponentPickerPlugin from "./plugins/ComponentPickerPlugin";
 import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
 import FloatingTextFormatToolbarPlugin from "./plugins/FloatingTextFormatToolbarPlugin";
 import MarkdownShortcutPlugin from "./plugins/MarkdownShortcutPlugin";
@@ -68,6 +70,8 @@ const Editor: React.FC = (props: EditorProps) => {
           <AutoFocusPlugin />
           <TabIndentationPlugin />
           <OnChangePlugin />
+          <AutoEmbedPlugin />
+          <ComponentPickerPlugin />
 
           <MarkdownShortcutPlugin />
           <AutoLinkPlugin />
