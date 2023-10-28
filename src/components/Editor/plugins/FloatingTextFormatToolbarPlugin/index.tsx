@@ -127,14 +127,11 @@ function TextFormatFloatingToolbar({
 
   const updateTextFormatFloatingToolbar = useCallback(() => {
     const popupCharStylesEditorElem = popupCharStylesEditorRef.current;
-    if (popupCharStylesEditorElem === null) {
-      return;
-    }
-
     const selection = $getSelection();
     const nativeSelection = window.getSelection();
     const rootElement = editor.getRootElement();
     if (
+      popupCharStylesEditorElem === null ||
       selection === null ||
       nativeSelection === null ||
       nativeSelection.isCollapsed ||

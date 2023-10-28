@@ -23,6 +23,7 @@ import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
 import FloatingTextFormatToolbarPlugin from "./plugins/FloatingTextFormatToolbarPlugin";
 import MarkdownShortcutPlugin from "./plugins/MarkdownShortcutPlugin";
 import { OnChangePlugin } from "./plugins/OnChangePlugin";
+import { ParagraphPlaceholderPlugin } from "./plugins/ParagraphPlaceholderPlugin";
 
 export type InitialConfig = ComponentProps<
   typeof LexicalComposer
@@ -89,6 +90,7 @@ const Editor: React.FC = (props: EditorProps) => {
               <FloatingTextFormatToolbarPlugin
                 anchorElem={floatingAnchorElem}
               />
+              <ParagraphPlaceholderPlugin anchorElem={floatingAnchorElem} />
             </>
           )}
         </div>
