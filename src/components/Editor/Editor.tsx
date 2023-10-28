@@ -36,10 +36,7 @@ export type EditorProps = {
   onChange?: OnChangePluginProps;
 };
 
-const Editor: React.FC = ({
-  initialConfig,
-  richTextPluginProps,
-}: EditorProps) => {
+const Editor: React.FC = (props: EditorProps) => {
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null);
   const onRef = (_floatingAnchorElem: HTMLDivElement) => {
@@ -50,7 +47,7 @@ const Editor: React.FC = ({
   const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false);
 
   return (
-    <EditorProvider initialConfig={initialConfig}>
+    <EditorProvider initialConfig={props.initialConfig}>
       <div className="editor-shell">
         <div className="editor-container">
           <LexicalRichTextPlugin
@@ -65,7 +62,7 @@ const Editor: React.FC = ({
               <Placeholder>心に残っていることはありますか？</Placeholder>
             }
             ErrorBoundary={LexicalErrorBoundary}
-            {...richTextPluginProps}
+            {...props.richTextPluginProps}
           />
           <HistoryPlugin />
           <AutoFocusPlugin />

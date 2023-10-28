@@ -6,16 +6,21 @@
  *
  */
 
-import "./index.css";
-
 import { $isCodeHighlightNode } from "@lexical/code";
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
+import { $isListNode, ListNode } from "@lexical/list";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { mergeRegister } from "@lexical/utils";
+import { $isHeadingNode } from "@lexical/rich-text";
+import {
+  $findMatchingParent,
+  $getNearestNodeOfType,
+  mergeRegister,
+} from "@lexical/utils";
 import {
   $getSelection,
   $isParagraphNode,
   $isRangeSelection,
+  $isRootOrShadowRoot,
   $isTextNode,
   COMMAND_PRIORITY_LOW,
   FORMAT_TEXT_COMMAND,
@@ -27,6 +32,24 @@ import { createPortal } from "react-dom";
 import { getDOMRangeRect } from "../../utils/getDOMRangeRect";
 import { getSelectedNode } from "../../utils/getSelectedNode";
 import { setFloatingElemPosition } from "../../utils/setFloatingElemPosition";
+import { BlockFormatDropDown } from "./BlockFormatDropDown";
+import "./index.css";
+
+export const blockTypeToBlockName = {
+  bullet: "Bulleted List",
+  check: "Check List",
+  code: "Code Block",
+  h1: "Heading 1",
+  h2: "Heading 2",
+  h3: "Heading 3",
+  h4: "Heading 4",
+  h5: "Heading 5",
+  h6: "Heading 6",
+  number: "Numbered List",
+  paragraph: "Normal",
+  quote: "Quote",
+};
+export type BlockTypeToBlockName = keyof typeof blockTypeToBlockName;
 
 function TextFormatFloatingToolbar({
   editor,
@@ -39,6 +62,8 @@ function TextFormatFloatingToolbar({
   isStrikethrough,
   isSubscript,
   isSuperscript,
+  isEditable,
+  blockType,
 }: {
   editor: LexicalEditor;
   anchorElem: HTMLElement;
@@ -50,6 +75,8 @@ function TextFormatFloatingToolbar({
   isSubscript: boolean;
   isSuperscript: boolean;
   isUnderline: boolean;
+  isEditable: boolean;
+  blockType: BlockTypeToBlockName;
 }): JSX.Element {
   const popupCharStylesEditorRef = useRef<HTMLDivElement | null>(null);
 
@@ -174,6 +201,11 @@ function TextFormatFloatingToolbar({
     <div ref={popupCharStylesEditorRef} className="floating-text-format-popup">
       {editor.isEditable() && (
         <>
+          <BlockFormatDropDown
+            disabled={!isEditable}
+            blockType={blockType}
+            editor={editor}
+          />
           <button
             type="button"
             onClick={() => {
@@ -273,6 +305,8 @@ function useFloatingTextFormatToolbar(
   const [isSubscript, setIsSubscript] = useState(false);
   const [isSuperscript, setIsSuperscript] = useState(false);
   const [isCode, setIsCode] = useState(false);
+  const [isEditable, setIsEditable] = useState(() => editor.isEditable());
+  const [blockType, setBlockType] = useState<BlockTypeToBlockName>("paragraph");
 
   const updatePopup = useCallback(() => {
     editor.getEditorState().read(() => {
@@ -331,6 +365,36 @@ function useFloatingTextFormatToolbar(
         setIsText(false);
         return;
       }
+
+      let element =
+        node.getKey() === "root"
+          ? node
+          : $findMatchingParent(node, (e) => {
+              const parent = e.getParent();
+              return parent !== null && $isRootOrShadowRoot(parent);
+            });
+
+      if (element === null) {
+        element = node.getTopLevelElementOrThrow();
+      }
+      const elementKey = element.getKey();
+      const elementDOM = editor.getElementByKey(elementKey);
+      if (elementDOM !== null) {
+        if ($isListNode(element)) {
+          const parentList = $getNearestNodeOfType<ListNode>(node, ListNode);
+          const type = parentList
+            ? parentList.getListType()
+            : element.getListType();
+          setBlockType(type);
+        } else {
+          const type = $isHeadingNode(element)
+            ? element.getTag()
+            : element.getType();
+          if (type in blockTypeToBlockName) {
+            setBlockType(type as keyof typeof blockTypeToBlockName);
+          }
+        }
+      }
     });
   }, [editor]);
 
@@ -370,6 +434,8 @@ function useFloatingTextFormatToolbar(
       isSuperscript={isSuperscript}
       isUnderline={isUnderline}
       isCode={isCode}
+      isEditable={isEditable}
+      blockType={blockType}
     />,
     anchorElem
   );
