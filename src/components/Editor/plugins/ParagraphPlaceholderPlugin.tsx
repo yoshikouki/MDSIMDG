@@ -92,5 +92,5 @@ export const ParagraphPlaceholderPlugin = ({
   anchorElem?: HTMLElement;
 }): JSX.Element => {
   const [editor] = useLexicalComposerContext();
-  return useParagraphPlaceholder(editor, anchorElem, editor._editable);
+  return useParagraphPlaceholder(editor, anchorElem, editor.isEditable());
 };
