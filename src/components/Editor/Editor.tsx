@@ -1,5 +1,7 @@
 "use client";
 
+import "./Editor.css";
+
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { CheckListPlugin } from "@lexical/react/LexicalCheckListPlugin";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
@@ -11,9 +13,8 @@ import { RichTextPlugin as LexicalRichTextPlugin } from "@lexical/react/LexicalR
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
 import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { UpdateListener } from "lexical/LexicalEditor";
-import React, { ComponentProps, useState } from "react";
+import { ComponentProps, useState } from "react";
 import Placeholder from "../Placeholder";
-import "./Editor.css";
 import { EditorProvider } from "./EditorProvider";
 import AutoEmbedPlugin from "./plugins/AutoEmbedPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";

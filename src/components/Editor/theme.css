@@ -18,15 +18,14 @@
 .EditorTheme__quote {
   margin: 1rem 0;
   font-size: 0.9rem;
-  color: rgb(101, 103, 107);
-  border-left-color: rgb(206, 208, 212);
+  color: var(--mdsimdg-text-secondary);
+  border-left-color: var(--mdsimdg-border-color);
   border-left-width: 4px;
   border-left-style: solid;
   padding-left: 1rem;
 }
 h1.EditorTheme__h1 {
   font-size: 2rem;
-  color: rgb(5, 5, 5);
   margin-top: 2rem
 }
 h2.EditorTheme__h2 {
@@ -66,17 +65,18 @@ h3.EditorTheme__h3 {
   vertical-align: super;
 }
 .EditorTheme__textCode {
-  background-color: rgb(240, 242, 245);
+  background: var(--mdsimdg-bg-paper);
   padding: 0.2rem 0.4rem;
   font-family: Menlo, Consolas, Monaco, monospace;
   font-size: 0.88rem;
 }
 .EditorTheme__hashtag {
-  background-color: rgba(88, 144, 255, 0.15);
-  border-bottom: 1px solid rgba(88, 144, 255, 0.3);
+  background: rgba(88, 144, 255, 0.15);
+
+  border-bottom: 1px solid var(--mdsimdg-border-color);
 }
 .EditorTheme__link {
-  color: rgb(33, 111, 219);
+  color: var(--mdsimdg-text-link);
   text-decoration: none;
 }
 .EditorTheme__link:hover {
@@ -84,7 +84,7 @@ h3.EditorTheme__h3 {
   cursor: pointer;
 }
 code.EditorTheme__code {
-  background-color: rgb(240, 242, 245);
+  background: var(--mdsimdg-bg-paper);
   font-family: Menlo, Consolas, Monaco, monospace;
   display: block;
   margin: 1rem 0;
@@ -107,7 +107,7 @@ table.EditorTheme__table {
   margin: 2rem 1rem;
 }
 .EditorTheme__tableSelection *::selection {
-  background-color: transparent;
+  background: transparent;
 }
 .EditorTheme__tableSelected {
   outline: 2px solid rgb(60, 132, 244);
@@ -129,7 +129,7 @@ table.EditorTheme__table {
   left: 0;
   width: 100%;
   height: 4px;
-  background-color: #999;
+  background: #999;
 }
 .EditorTheme__tableCellResizer {
   position: absolute;
@@ -141,11 +141,11 @@ table.EditorTheme__table {
   top: 0;
 }
 .EditorTheme__tableCellHeader {
-  background-color: #f2f3f5;
+  background: #f2f3f5;
   text-align: start;
 }
 .EditorTheme__tableCellSelected {
-  background-color: #c9dbf0;
+  background: #c9dbf0;
 }
 .EditorTheme__tableCellPrimarySelected {
   border: 2px solid rgb(60, 132, 244);
@@ -165,7 +165,7 @@ table.EditorTheme__table {
   position: absolute;
   top: 0;
   width: 20px;
-  background-color: #eee;
+  background: var(--mdsimdg-bg-paper);
   height: 100%;
   right: -25px;
   animation: table-controls 0.2s ease;
@@ -173,7 +173,7 @@ table.EditorTheme__table {
   cursor: pointer;
 }
 .EditorTheme__tableAddColumns:after {
-  background-image: url(../images/icons/plus.svg);
+  background-image: url(images/icons/plus.svg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -187,13 +187,13 @@ table.EditorTheme__table {
   opacity: 0.4;
 }
 .EditorTheme__tableAddColumns:hover {
-  background-color: #c9dbf0;
+  background: #c9dbf0;
 }
 .EditorTheme__tableAddRows {
   position: absolute;
   bottom: -25px;
   width: calc(100% - 25px);
-  background-color: #eee;
+  background: var(--mdsimdg-bg-paper);
   height: 20px;
   left: 0;
   animation: table-controls 0.2s ease;
@@ -201,7 +201,7 @@ table.EditorTheme__table {
   cursor: pointer;
 }
 .EditorTheme__tableAddRows:after {
-  background-image: url(../images/icons/plus.svg);
+  background-image: url(images/icons/plus.svg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -215,7 +215,7 @@ table.EditorTheme__table {
   opacity: 0.4;
 }
 .EditorTheme__tableAddRows:hover {
-  background-color: #c9dbf0;
+  background: #c9dbf0;
 }
 @keyframes table-controls {
   0% {
@@ -229,7 +229,7 @@ table.EditorTheme__table {
   display: block;
   position: absolute;
   width: 1px;
-  background-color: rgb(60, 132, 244);
+  background: rgb(60, 132, 244);
   height: 100%;
   top: 0;
 }
@@ -243,7 +243,7 @@ table.EditorTheme__table {
   height: 20px;
 }
 .EditorTheme__tableCellActionButton {
-  background-color: #eee;
+  background: var(--mdsimdg-bg-paper);
   display: block;
   border: 0;
   border-radius: 20px;
@@ -253,7 +253,7 @@ table.EditorTheme__table {
   cursor: pointer;
 }
 .EditorTheme__tableCellActionButton:hover {
-  background-color: #ddd;
+  background: #ddd;
 }
 
 
@@ -334,8 +334,7 @@ ul.EditorTheme__ul {
 .EditorTheme__listItemChecked:before {
   border: 1px solid rgb(61, 135, 245);
   border-radius: 2px;
-  background-color: #3d87f5;
-  background-repeat: no-repeat;
+  background: #3d87f5 no-repeat;
 }
 .EditorTheme__listItemChecked:after {
   content: '';
@@ -360,11 +359,7 @@ ul.EditorTheme__ul {
   display: none;
 }
 
-/* Other */
-.EditorTheme__characterLimit {
-  display: inline;
-  background-color: #ffbbbb !important;
-}
+/* Code Highlight */
 .EditorTheme__tokenComment {
   color: slategray;
 }
@@ -388,6 +383,12 @@ ul.EditorTheme__ul {
 }
 .EditorTheme__tokenFunction {
   color: #dd4a68;
+}
+
+/* Other */
+.EditorTheme__characterLimit {
+  display: inline;
+  background: #ffbbbb !important;
 }
 .EditorTheme__mark {
   background: rgba(255, 212, 0, 0.14);
