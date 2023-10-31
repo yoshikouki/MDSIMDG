@@ -1,11 +1,3 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
 import * as React from "react";
 import {
   ReactNode,
@@ -23,7 +15,7 @@ type DropDownContextType = {
 
 const DropDownContext = React.createContext<DropDownContextType | null>(null);
 
-const dropDownPadding = 4;
+const dropDownPadding = 8;
 
 export function DropDownItem({
   children,
@@ -33,7 +25,7 @@ export function DropDownItem({
 }: {
   children: React.ReactNode;
   className: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (event?: React.MouseEvent<HTMLButtonElement>) => void;
   title?: string;
 }) {
   const ref = useRef<HTMLButtonElement>(null);
@@ -140,84 +132,63 @@ export default function DropDown({
   buttonClassName,
   buttonIconClassName,
   children,
-  stopCloseOnClickSelf,
-}: {
+}: // isClosedOnSelection = true,
+{
   disabled?: boolean;
   buttonAriaLabel?: string;
   buttonClassName: string;
   buttonIconClassName?: string;
   buttonLabel?: string;
   children: ReactNode;
-  stopCloseOnClickSelf?: boolean;
+  // isClosedOnSelection?: boolean;
 }): JSX.Element {
   const dropDownRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLButtonElement>(null);
+  const openButtonRef = useRef<HTMLButtonElement>(null);
   const [showDropDown, setShowDropDown] = useState(false);
 
-  const handleClose = () => {
+  const onClickOpenBtn = () => {
+    setShowDropDown((prev) => !prev);
+  };
+
+  const onCloseDropDown = () => {
     setShowDropDown(false);
-    if (buttonRef && buttonRef.current) {
-      buttonRef.current.focus();
+    openButtonRef.current?.focus();
+  };
+
+  const onScrollDropDown = () => {
+    const openBtn = openButtonRef.current;
+    const dropDown = dropDownRef.current;
+    if (!(showDropDown && openBtn && dropDown)) return;
+
+    const openBtnRect = openBtn.getBoundingClientRect();
+    const top = openBtnRect.top + openBtn.offsetHeight + dropDownPadding;
+    const left = Math.min(
+      openBtnRect.left,
+      window.innerWidth - dropDown.offsetWidth - 20
+    );
+    dropDown.style.top = `${top}px`;
+    dropDown.style.left = `${left}px`;
+  };
+
+  const onClickDropdown = ({ target }: MouseEvent) => {
+    if (dropDownRef.current?.contains(target as Node)) {
+      setShowDropDown(false);
     }
   };
 
   useEffect(() => {
-    const button = buttonRef.current;
-    const dropDown = dropDownRef.current;
-    if (showDropDown && button !== null && dropDown !== null) {
-      const { top, left } = button.getBoundingClientRect();
-      dropDown.style.top = `${top + button.offsetHeight + dropDownPadding}px`;
-      dropDown.style.left = `${Math.min(
-        left,
-        window.innerWidth - dropDown.offsetWidth - 20
-      )}px`;
+    onScrollDropDown();
+    document.addEventListener("scroll", onScrollDropDown);
+    if (showDropDown) {
+      document.addEventListener("click", onClickDropdown);
     }
-  }, [dropDownRef, buttonRef, showDropDown]);
-
-  useEffect(() => {
-    const button = buttonRef.current;
-    if (button !== null && showDropDown) {
-      const handle = (event: MouseEvent) => {
-        const target = event.target;
-        if (stopCloseOnClickSelf) {
-          if (
-            dropDownRef.current &&
-            dropDownRef.current.contains(target as Node)
-          )
-            return;
-        }
-        if (!button.contains(target as Node)) {
-          setShowDropDown(false);
-        }
-      };
-      document.addEventListener("click", handle);
-
-      return () => {
-        document.removeEventListener("click", handle);
-      };
-    }
-  }, [dropDownRef, buttonRef, showDropDown, stopCloseOnClickSelf]);
-
-  useEffect(() => {
-    const handleButtonPositionUpdate = () => {
+    return () => {
+      document.removeEventListener("scroll", onScrollDropDown);
       if (showDropDown) {
-        const button = buttonRef.current;
-        const dropDown = dropDownRef.current;
-        if (button !== null && dropDown !== null) {
-          const { top } = button.getBoundingClientRect();
-          const newPosition = top + button.offsetHeight + dropDownPadding;
-          if (newPosition !== dropDown.getBoundingClientRect().top) {
-            dropDown.style.top = `${newPosition}px`;
-          }
-        }
+        document.removeEventListener("click", onClickDropdown);
       }
     };
-    document.addEventListener("scroll", handleButtonPositionUpdate);
-
-    return () => {
-      document.removeEventListener("scroll", handleButtonPositionUpdate);
-    };
-  }, [buttonRef, dropDownRef, showDropDown]);
+  }, [showDropDown]);
 
   return (
     <>
@@ -226,8 +197,8 @@ export default function DropDown({
         disabled={disabled}
         aria-label={buttonAriaLabel || buttonLabel}
         className={buttonClassName}
-        onClick={() => setShowDropDown(!showDropDown)}
-        ref={buttonRef}
+        onClick={onClickOpenBtn}
+        ref={openButtonRef}
       >
         {buttonIconClassName && <span className={buttonIconClassName} />}
         {buttonLabel && (
@@ -238,7 +209,7 @@ export default function DropDown({
 
       {showDropDown &&
         createPortal(
-          <DropDownItems dropDownRef={dropDownRef} onClose={handleClose}>
+          <DropDownItems dropDownRef={dropDownRef} onClose={onCloseDropDown}>
             {children}
           </DropDownItems>,
           document.body
