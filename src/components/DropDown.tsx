@@ -131,14 +131,14 @@ export default function DropDown({
   buttonLabel,
   buttonAriaLabel,
   buttonClassName,
-  buttonIconClassName,
+  buttonIcon,
   children,
 }: // isClosedOnSelection = true,
 {
   disabled?: boolean;
   buttonAriaLabel?: string;
   buttonClassName: string;
-  buttonIconClassName?: string;
+  buttonIcon?: ReactNode;
   buttonLabel?: string;
   children: ReactNode;
   // isClosedOnSelection?: boolean;
@@ -201,7 +201,7 @@ export default function DropDown({
         onClick={onClickOpenBtn}
         ref={openButtonRef}
       >
-        {buttonIconClassName && <span className={buttonIconClassName} />}
+        {buttonIcon}
         {buttonLabel && (
           <span className="text dropdown-button-text">{buttonLabel}</span>
         )}

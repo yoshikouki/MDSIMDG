@@ -22,6 +22,19 @@ import {
   LexicalEditor,
   TextNode,
 } from "lexical";
+import {
+  Code2,
+  Heading1,
+  Heading2,
+  Heading3,
+  List,
+  ListOrdered,
+  ListTodo,
+  Pilcrow,
+  Quote,
+  SplitSquareVertical,
+  Table2,
+} from "lucide-react";
 import * as React from "react";
 import { useCallback, useMemo, useState } from "react";
 import * as ReactDOM from "react-dom";
@@ -29,6 +42,9 @@ import useModal from "../../../../hooks/useModal";
 import joinClasses from "../../utils/joinClasses";
 import { EmbedConfigs } from "../AutoEmbedPlugin";
 // import { InsertImageDialog } from "../ImagesPlugin";
+
+const iconSize = 20;
+const strokeWidth = 2;
 
 class BlockTypePickerOption extends MenuOption {
   // What shows up in the editor
@@ -79,7 +95,11 @@ function getDynamicOptions(editor: LexicalEditor, queryString: string) {
       ...colOptions.map(
         (columns) =>
           new BlockTypePickerOption(`${rows}x${columns} Table`, {
-            icon: <i className="icon table" />,
+            icon: (
+              <span className="icon">
+                <Table2 size={iconSize} strokeWidth={strokeWidth} />
+              </span>
+            ),
             keywords: ["table"],
             onSelect: () =>
               editor.dispatchCommand(INSERT_TABLE_COMMAND, { columns, rows }),
@@ -99,7 +119,11 @@ export function getBaseOptions(
 ) {
   return [
     new BlockTypePickerOption("Paragraph", {
-      icon: <i className="icon paragraph" />,
+      icon: (
+        <span className="icon">
+          <Pilcrow size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
       keywords: ["normal", "paragraph", "p", "text"],
       onSelect: () =>
         editor.update(() => {
@@ -109,48 +133,94 @@ export function getBaseOptions(
           }
         }),
     }),
-    ...([1, 2, 3] as const).map(
-      (n) =>
-        new BlockTypePickerOption(`Heading ${n}`, {
-          icon: <i className={`icon h${n}`} />,
-          keywords: ["heading", "header", `h${n}`],
-          onSelect: () =>
-            editor.update(() => {
-              const selection = $getSelection();
-              if ($isRangeSelection(selection)) {
-                $setBlocksType(selection, () => $createHeadingNode(`h${n}`));
-              }
-            }),
-        })
-    ),
-    // new BlockTypePickerOption("Table", {
-    //   icon: <i className="icon table" />,
-    //   keywords: ["table", "grid", "spreadsheet", "rows", "columns"],
-    //   onSelect: () =>
-    //     showModal("Insert Table", (onClose) => (
-    //       <InsertTableDialog activeEditor={editor} onClose={onClose} />
-    //     )),
-    // }),
+
+    new BlockTypePickerOption(`Heading 1`, {
+      icon: (
+        <span className="icon">
+          <Heading1 size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
+      keywords: ["heading", "header", `h1`],
+      onSelect: () =>
+        editor.update(() => {
+          const selection = $getSelection();
+          if ($isRangeSelection(selection)) {
+            $setBlocksType(selection, () => $createHeadingNode(`h1`));
+          }
+        }),
+    }),
+
+    new BlockTypePickerOption(`Heading 2`, {
+      icon: (
+        <span className="icon">
+          <Heading2 size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
+      keywords: ["heading", "header", `h2`],
+      onSelect: () =>
+        editor.update(() => {
+          const selection = $getSelection();
+          if ($isRangeSelection(selection)) {
+            $setBlocksType(selection, () => $createHeadingNode(`h2`));
+          }
+        }),
+    }),
+
+    new BlockTypePickerOption(`Heading 3`, {
+      icon: (
+        <span className="icon">
+          <Heading3 size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
+      keywords: ["heading", "header", `h3`],
+      onSelect: () =>
+        editor.update(() => {
+          const selection = $getSelection();
+          if ($isRangeSelection(selection)) {
+            $setBlocksType(selection, () => $createHeadingNode(`h3`));
+          }
+        }),
+    }),
+
     new BlockTypePickerOption("Numbered List", {
-      icon: <i className="icon number" />,
+      icon: (
+        <span className="icon">
+          <ListOrdered size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
       keywords: ["numbered list", "ordered list", "ol"],
       onSelect: () =>
         editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined),
     }),
+
     new BlockTypePickerOption("Bulleted List", {
-      icon: <i className="icon bullet" />,
+      icon: (
+        <span className="icon">
+          <List size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
       keywords: ["bulleted list", "unordered list", "ul"],
       onSelect: () =>
         editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined),
     }),
+
     new BlockTypePickerOption("Check List", {
-      icon: <i className="icon check" />,
+      icon: (
+        <span className="icon">
+          <ListTodo size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
       keywords: ["check list", "todo list"],
       onSelect: () =>
         editor.dispatchCommand(INSERT_CHECK_LIST_COMMAND, undefined),
     }),
+
     new BlockTypePickerOption("Quote", {
-      icon: <i className="icon quote" />,
+      icon: (
+        <span className="icon">
+          <Quote size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
       keywords: ["block quote"],
       onSelect: () =>
         editor.update(() => {
@@ -160,8 +230,13 @@ export function getBaseOptions(
           }
         }),
     }),
+
     new BlockTypePickerOption("Code", {
-      icon: <i className="icon code" />,
+      icon: (
+        <span className="icon">
+          <Code2 size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
       keywords: ["javascript", "python", "js", "codeblock"],
       onSelect: () =>
         editor.update(() => {
@@ -179,12 +254,18 @@ export function getBaseOptions(
           }
         }),
     }),
+
     new BlockTypePickerOption("Divider", {
-      icon: <i className="icon horizontal-rule" />,
+      icon: (
+        <span className="icon">
+          <SplitSquareVertical size={iconSize} strokeWidth={strokeWidth} />
+        </span>
+      ),
       keywords: ["horizontal rule", "divider", "hr"],
       onSelect: () =>
         editor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined),
     }),
+
     ...EmbedConfigs.map(
       (embedConfig) =>
         new BlockTypePickerOption(`Embed ${embedConfig.contentName}`, {
@@ -194,23 +275,72 @@ export function getBaseOptions(
             editor.dispatchCommand(INSERT_EMBED_COMMAND, embedConfig.type),
         })
     ),
+
+    // new BlockTypePickerOption("Table", {
+    //   icon: (
+    //     <span className="icon">
+    //       <Table2 size={iconSize} strokeWidth={strokeWidth} />
+    //     </span>
+    //   ),
+    //   keywords: ["table", "grid", "spreadsheet", "rows", "columns"],
+    //   onSelect: () =>
+    //     showModal("Insert Table", (onClose) => (
+    //       <InsertTableDialog activeEditor={editor} onClose={onClose} />
+    //     )),
+    // }),
+
     // new BlockTypePickerOption("Image", {
-    //   icon: <i className="icon image" />,
+    //   icon: (
+    //     <span className="icon">
+    //       <Image size={iconSize} strokeWidth={strokeWidth} />
+    //     </span>
+    //   ),
     //   keywords: ["image", "photo", "picture", "file"],
     //   onSelect: () =>
     //     showModal("Insert Image", (onClose) => (
     //       <InsertImageDialog activeEditor={editor} onClose={onClose} />
     //     )),
     // }),
-    // ...(["left", "center", "right", "justify"] as const).map(
-    //   (alignment) =>
-    //     new BlockTypePickerOption(`Align ${alignment}`, {
-    //       icon: <i className={`icon ${alignment}-align`} />,
-    //       keywords: ["align", "justify", alignment],
-    //       onSelect: () =>
-    //         editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, alignment),
-    //     })
-    // ),
+
+    // new BlockTypePickerOption(`Align left`, {
+    //   icon: (
+    //     <span className="icon">
+    //       <AlignLeft size={iconSize} strokeWidth={strokeWidth} />
+    //     </span>
+    //   ),
+    //   keywords: ["align", "justify", "left"],
+    //   onSelect: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "left"),
+    // }),
+
+    // new BlockTypePickerOption(`Align center`, {
+    //   icon: (
+    //     <span className="icon">
+    //       <AlignCenter size={iconSize} strokeWidth={strokeWidth} />
+    //     </span>
+    //   ),
+    //   keywords: ["align", "justify", "center"],
+    //   onSelect: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "center"),
+    // }),
+
+    // new BlockTypePickerOption(`Align right`, {
+    //   icon: (
+    //     <span className="icon">
+    //       <AlignRight size={iconSize} strokeWidth={strokeWidth} />
+    //     </span>
+    //   ),
+    //   keywords: ["align", "justify", "right"],
+    //   onSelect: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "right"),
+    // }),
+
+    // new BlockTypePickerOption(`Align justify`, {
+    //   icon: (
+    //     <span className="icon">
+    //       <AlignJustify size={iconSize} strokeWidth={strokeWidth} />
+    //     </span>
+    //   ),
+    //   keywords: ["align", "justify", "justify"],
+    //   onSelect: () => editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, "justify"),
+    // }),
   ];
 }
 

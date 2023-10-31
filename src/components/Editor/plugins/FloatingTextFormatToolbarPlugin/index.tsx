@@ -27,6 +27,27 @@ import {
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from "lexical";
+import {
+  Bold,
+  Code2,
+  Heading1,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
+  Italic,
+  Link,
+  List,
+  ListOrdered,
+  ListTodo,
+  Pilcrow,
+  Quote,
+  Strikethrough,
+  Subscript,
+  Superscript,
+  Underline,
+} from "lucide-react";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { getDOMRangeRect } from "../../utils/getDOMRangeRect";
@@ -34,6 +55,9 @@ import { getSelectedNode } from "../../utils/getSelectedNode";
 import { setFloatingElemPosition } from "../../utils/setFloatingElemPosition";
 import { BlockFormatDropDown } from "./BlockFormatDropDown";
 import "./index.css";
+
+const iconSize = 20;
+const strokeWidth = 2;
 
 export const blockTypeToBlockName = {
   bullet: "Bulleted List",
@@ -50,6 +74,69 @@ export const blockTypeToBlockName = {
   quote: "Quote",
 };
 export type BlockTypeToBlockName = keyof typeof blockTypeToBlockName;
+export const blockTypeToBlockIcon = {
+  paragraph: (
+    <span className="icon">
+      <Pilcrow size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  number: (
+    <span className="icon">
+      <ListOrdered size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  bullet: (
+    <span className="icon">
+      <List size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  check: (
+    <span className="icon">
+      <ListTodo size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  quote: (
+    <span className="icon">
+      <Quote size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  code: (
+    <span className="icon">
+      <Code2 size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  h1: (
+    <span className="icon">
+      <Heading1 size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  h2: (
+    <span className="icon">
+      <Heading2 size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  h3: (
+    <span className="icon">
+      <Heading3 size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  h4: (
+    <span className="icon">
+      <Heading4 size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  h5: (
+    <span className="icon">
+      <Heading5 size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+  h6: (
+    <span className="icon">
+      <Heading6 size={iconSize} strokeWidth={strokeWidth} />
+    </span>
+  ),
+};
+export type BlockTypeToBlockIcon = keyof typeof blockTypeToBlockName;
 
 function TextFormatFloatingToolbar({
   editor,
@@ -211,7 +298,9 @@ function TextFormatFloatingToolbar({
             className={"popup-item spaced " + (isBold ? "active" : "")}
             aria-label="Format text as bold"
           >
-            <i className="format bold" />
+            <span className="icon">
+              <Bold size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
           <button
             type="button"
@@ -221,7 +310,9 @@ function TextFormatFloatingToolbar({
             className={"popup-item spaced " + (isItalic ? "active" : "")}
             aria-label="Format text as italics"
           >
-            <i className="format italic" />
+            <span className="icon">
+              <Italic size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
           <button
             type="button"
@@ -231,7 +322,9 @@ function TextFormatFloatingToolbar({
             className={"popup-item spaced " + (isUnderline ? "active" : "")}
             aria-label="Format text to underlined"
           >
-            <i className="format underline" />
+            <span className="icon">
+              <Underline size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
           <button
             type="button"
@@ -241,7 +334,9 @@ function TextFormatFloatingToolbar({
             className={"popup-item spaced " + (isStrikethrough ? "active" : "")}
             aria-label="Format text with a strikethrough"
           >
-            <i className="format strikethrough" />
+            <span className="icon">
+              <Strikethrough size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
           <button
             type="button"
@@ -252,7 +347,9 @@ function TextFormatFloatingToolbar({
             title="Subscript"
             aria-label="Format Subscript"
           >
-            <i className="format subscript" />
+            <span className="icon">
+              <Subscript size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
           <button
             type="button"
@@ -263,7 +360,9 @@ function TextFormatFloatingToolbar({
             title="Superscript"
             aria-label="Format Superscript"
           >
-            <i className="format superscript" />
+            <span className="icon">
+              <Superscript size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
           <button
             type="button"
@@ -273,7 +372,9 @@ function TextFormatFloatingToolbar({
             className={"popup-item spaced " + (isCode ? "active" : "")}
             aria-label="Insert code block"
           >
-            <i className="format code" />
+            <span className="icon">
+              <Code2 size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
           <button
             type="button"
@@ -281,7 +382,9 @@ function TextFormatFloatingToolbar({
             className={"popup-item spaced " + (isLink ? "active" : "")}
             aria-label="Insert link"
           >
-            <i className="format link" />
+            <span className="icon">
+              <Link size={iconSize} strokeWidth={strokeWidth} />
+            </span>
           </button>
         </>
       )}

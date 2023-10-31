@@ -3,7 +3,11 @@ import * as React from "react";
 import DropDown, { DropDownItem } from "../../../DropDown";
 import joinClasses from "../../utils/joinClasses";
 import { getBaseOptions } from "../BlockTypePickerPlugin";
-import { BlockTypeToBlockName, blockTypeToBlockName } from "./index";
+import {
+  BlockTypeToBlockName,
+  blockTypeToBlockIcon,
+  blockTypeToBlockName,
+} from "./index";
 
 export function BlockFormatDropDown({
   editor,
@@ -20,7 +24,9 @@ export function BlockFormatDropDown({
     <DropDown
       disabled={disabled}
       buttonClassName="popup-item spaced toolbar-item block-controls"
-      buttonIconClassName={"icon block-type " + blockType}
+      buttonIcon={
+        <span className="icon">{blockTypeToBlockIcon[blockType]}</span>
+      }
       buttonLabel={blockTypeToBlockName[blockType]}
       buttonAriaLabel="Formatting options for text style"
     >
