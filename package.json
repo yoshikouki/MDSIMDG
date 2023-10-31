@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "@lexical/react": "^0.12.2",
-    "lexical": "^0.12.2"
+    "lexical": "^0.12.2",
+    "lucide-react": "^0.291.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.5.1",

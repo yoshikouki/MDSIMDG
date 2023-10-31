@@ -1062,12 +1062,8 @@ i.page-break,
   cursor: pointer;
 }
 
-i.chevron-down {
-  background-size: contain;
-  display: inline-block;
-  height: 8px;
-  width: 8px;
-  background: transparent url(images/icons/chevron-down.svg);
+.icon {
+  color: var(--mdsimdg-text-icon);
 }
 
 .action-button {

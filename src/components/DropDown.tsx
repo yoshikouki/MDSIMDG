@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import * as React from "react";
 import {
   ReactNode,
@@ -204,7 +205,9 @@ export default function DropDown({
         {buttonLabel && (
           <span className="text dropdown-button-text">{buttonLabel}</span>
         )}
-        <i className="chevron-down" />
+        <span className="icon">
+          <ChevronDown size={16} />
+        </span>
       </button>
 
       {showDropDown &&
