@@ -199,9 +199,9 @@ function TextFormatFloatingToolbar({
       {editor.isEditable() && (
         <>
           <BlockFormatDropDown
-            disabled={!isEditable}
-            blockType={blockType}
             editor={editor}
+            blockType={blockType}
+            disabled={!isEditable}
           />
           <button
             type="button"

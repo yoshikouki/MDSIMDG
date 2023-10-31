@@ -26,7 +26,7 @@ export function DropDownItem({
 }: {
   children: React.ReactNode;
   className: string;
-  onClick: (event?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: () => void;
   title?: string;
 }) {
   const ref = useRef<HTMLButtonElement>(null);

@@ -13,13 +13,13 @@ import { RichTextPlugin as LexicalRichTextPlugin } from "@lexical/react/LexicalR
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
 import { TablePlugin } from "@lexical/react/LexicalTablePlugin";
 import { UpdateListener } from "lexical/LexicalEditor";
-import { ComponentProps, useState } from "react";
+import React, { ComponentProps, useState } from "react";
 import Placeholder from "../Placeholder";
 import { EditorProvider } from "./EditorProvider";
 import AutoEmbedPlugin from "./plugins/AutoEmbedPlugin";
 import AutoLinkPlugin from "./plugins/AutoLinkPlugin";
+import BlockTypePickerPlugin from "./plugins/BlockTypePickerPlugin";
 import CodeHighlightPlugin from "./plugins/CodeHighlightPlugin";
-import ComponentPickerPlugin from "./plugins/ComponentPickerPlugin";
 import FloatingLinkEditorPlugin from "./plugins/FloatingLinkEditorPlugin";
 import FloatingTextFormatToolbarPlugin from "./plugins/FloatingTextFormatToolbarPlugin";
 import MarkdownShortcutPlugin from "./plugins/MarkdownShortcutPlugin";
@@ -73,7 +73,7 @@ const Editor: React.FC = (props: EditorProps) => {
           <TabIndentationPlugin />
           <OnChangePlugin />
           <AutoEmbedPlugin />
-          <ComponentPickerPlugin />
+          <BlockTypePickerPlugin />
 
           <MarkdownShortcutPlugin />
           <AutoLinkPlugin />
