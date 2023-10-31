@@ -235,213 +235,6 @@ pre::-webkit-scrollbar-thumb {
   width: 200px;
 }
 
-i.palette {
-  background-image: url(images/icons/palette.svg);
-}
-
-i.bucket {
-  background-image: url(images/icons/paint-bucket.svg);
-}
-
-i.bold {
-  background-image: url(images/icons/type-bold.svg);
-}
-
-i.italic {
-  background-image: url(images/icons/type-italic.svg);
-}
-
-i.clear {
-  background-image: url(images/icons/trash.svg);
-}
-
-i.code {
-  background-image: url(images/icons/code.svg);
-}
-
-i.underline {
-  background-image: url(images/icons/type-underline.svg);
-}
-
-i.strikethrough {
-  background-image: url(images/icons/type-strikethrough.svg);
-}
-
-i.subscript {
-  background-image: url(images/icons/type-subscript.svg);
-}
-
-i.superscript {
-  background-image: url(images/icons/type-superscript.svg);
-}
-
-i.link {
-  background-image: url(images/icons/link.svg);
-}
-
-i.horizontal-rule {
-  background-image: url(images/icons/horizontal-rule.svg);
-}
-
-.icon.plus {
-  background-image: url(images/icons/plus.svg);
-}
-
-.icon.caret-right {
-  background-image: url(images/icons/caret-right-fill.svg);
-}
-
-.icon.dropdown-more {
-  background-image: url(images/icons/dropdown-more.svg);
-}
-
-.icon.font-color {
-  background-image: url(images/icons/font-color.svg);
-}
-
-.icon.font-family {
-  background-image: url(images/icons/font-family.svg);
-}
-
-.icon.bg-color {
-  background-image: url(images/icons/bg-color.svg);
-}
-
-.icon.table {
-  background: var(--mdsimdg-bg-paper);
-  mask-image: url(images/icons/table.svg);
-  -webkit-mask-image: url(images/icons/table.svg);
-  mask-repeat: no-repeat;
-  -webkit-mask-repeat: no-repeat;
-  mask-size: contain;
-  -webkit-mask-size: contain;
-}
-
-i.image {
-  background-image: url(images/icons/file-image.svg);
-}
-
-i.table {
-  background-image: url(images/icons/table.svg);
-}
-
-i.close {
-  background-image: url(images/icons/close.svg);
-}
-
-i.figma {
-  background-image: url(images/icons/figma.svg);
-}
-
-i.poll {
-  background-image: url(images/icons/card-checklist.svg);
-}
-
-i.columns {
-  background-image: url(images/icons/3-columns.svg);
-}
-
-i.tweet {
-  background-image: url(images/icons/tweet.svg);
-}
-
-i.youtube {
-  background-image: url(images/icons/youtube.svg);
-}
-
-.icon.left-align,
-i.left-align {
-  background-image: url(images/icons/text-left.svg);
-}
-
-.icon.center-align,
-i.center-align {
-  background-image: url(images/icons/text-center.svg);
-}
-
-.icon.right-align,
-i.right-align {
-  background-image: url(images/icons/text-right.svg);
-}
-
-.icon.justify-align,
-i.justify-align {
-  background-image: url(images/icons/justify.svg);
-}
-
-i.indent {
-  background-image: url(images/icons/indent.svg);
-}
-
-i.markdown {
-  background-image: url(images/icons/markdown.svg);
-}
-
-i.outdent {
-  background-image: url(images/icons/outdent.svg);
-}
-
-i.undo {
-  background-image: url(images/icons/arrow-counterclockwise.svg);
-}
-
-i.redo {
-  background-image: url(images/icons/arrow-clockwise.svg);
-}
-
-i.sticky {
-  background-image: url(images/icons/sticky.svg);
-}
-
-i.mic {
-  background-image: url(images/icons/mic.svg);
-}
-
-i.import {
-  background-image: url(images/icons/upload.svg);
-}
-
-i.export {
-  background-image: url(images/icons/download.svg);
-}
-
-i.diagram-2 {
-  background-image: url(images/icons/diagram-2.svg);
-}
-
-i.user {
-  background-image: url(images/icons/user.svg);
-}
-
-i.equation {
-  background-image: url(images/icons/plus-slash-minus.svg);
-}
-
-i.gif {
-  background-image: url(images/icons/filetype-gif.svg);
-}
-
-i.copy {
-  background-image: url(images/icons/copy.svg);
-}
-
-i.success {
-  background-image: url(images/icons/success.svg);
-}
-
-i.prettier {
-  background-image: url(images/icons/prettier.svg);
-}
-
-i.prettier-error {
-  background-image: url(images/icons/prettier-error.svg);
-}
-
-i.page-break,
-.icon.page-break {
-  background-image: url(images/icons/scissors.svg);
-}
-
 .link-editor .button.active,
 .toolbar .button.active {
   background: var(--mdsimdg-bg-actived);
@@ -484,10 +277,6 @@ i.page-break,
 }
 
 .link-editor div.link-edit {
-  background-image: url(images/icons/pencil-fill.svg);
-  background-size: 16px;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 35px;
   vertical-align: -0.25em;
   position: absolute;
@@ -498,10 +287,6 @@ i.page-break,
 }
 
 .link-editor div.link-trash {
-  background-image: url(images/icons/trash.svg);
-  background-size: 16px;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 35px;
   vertical-align: -0.25em;
   position: absolute;
@@ -512,10 +297,6 @@ i.page-break,
 }
 
 .link-editor div.link-cancel {
-  background-image: url(images/icons/close.svg);
-  background-size: 16px;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 35px;
   vertical-align: -0.25em;
   margin-right: 28px;
@@ -527,10 +308,6 @@ i.page-break,
 }
 
 .link-editor div.link-confirm {
-  background-image: url(images/icons/success-alt.svg);
-  background-size: 16px;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 35px;
   vertical-align: -0.25em;
   margin-right: 2px;
@@ -675,57 +452,6 @@ i.page-break,
   }
 }
 
-.icon.paragraph {
-  background-image: url(images/icons/text-paragraph.svg);
-}
-
-.icon.h1 {
-  background-image: url(images/icons/type-h1.svg);
-}
-
-.icon.h2 {
-  background-image: url(images/icons/type-h2.svg);
-}
-
-.icon.h3 {
-  background-image: url(images/icons/type-h3.svg);
-}
-
-.icon.h4 {
-  background-image: url(images/icons/type-h4.svg);
-}
-
-.icon.h5 {
-  background-image: url(images/icons/type-h5.svg);
-}
-
-.icon.h6 {
-  background-image: url(images/icons/type-h6.svg);
-}
-
-.icon.bullet-list,
-.icon.bullet {
-  background-image: url(images/icons/list-ul.svg);
-}
-
-.icon.check-list,
-.icon.check {
-  background-image: url(images/icons/square-check.svg);
-}
-
-.icon.numbered-list,
-.icon.number {
-  background-image: url(images/icons/list-ol.svg);
-}
-
-.icon.quote {
-  background-image: url(images/icons/chat-square-quote.svg);
-}
-
-.icon.code {
-  background-image: url(images/icons/code.svg);
-}
-
 .editor-shell span.editor-image {
   cursor: default;
   display: inline-block;
@@ -791,10 +517,6 @@ i.page-break,
 .editor-shell .editor-image .image-edit-button {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  background-image: url(images/icons/pencil-fill.svg);
-  background-size: 16px;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 35px;
   height: 35px;
   vertical-align: -0.25em;
@@ -958,89 +680,9 @@ i.page-break,
   background: rgba(150, 150, 150, 0.4);
 }
 
-.emoji.happysmile {
-  background-image: url(images/emoji/1F642.png);
-}
-
-.emoji.veryhappysmile {
-  background-image: url(images/emoji/1F600.png);
-}
-
-.emoji.unhappysmile {
-  background-image: url(images/emoji/1F641.png);
-}
-
-.emoji.heart {
-  background-image: url(images/emoji/2764.png);
-}
-
 .keyword {
   color: rgb(241, 118, 94);
   font-weight: bold;
-}
-
-.actions {
-  position: absolute;
-  text-align: right;
-  margin: 10px;
-  bottom: 0;
-  right: 0;
-}
-
-.actions i {
-  background-size: contain;
-  display: inline-block;
-  height: 15px;
-  width: 15px;
-  vertical-align: -0.25em;
-}
-
-.actions i.indent {
-  background-image: url(images/icons/indent.svg);
-}
-
-.actions i.outdent {
-  background-image: url(images/icons/outdent.svg);
-}
-
-.actions i.lock {
-  background-image: url(images/icons/lock-fill.svg);
-}
-
-.actions i.image {
-  background-image: url(images/icons/file-image.svg);
-}
-
-.actions i.table {
-  background-image: url(images/icons/table.svg);
-}
-
-.actions i.unlock {
-  background-image: url(images/icons/lock.svg);
-}
-
-.actions i.left-align {
-  background-image: url(images/icons/text-left.svg);
-}
-
-.actions i.center-align {
-  background-image: url(images/icons/text-center.svg);
-}
-
-.actions i.right-align {
-  background-image: url(images/icons/text-right.svg);
-}
-
-.actions i.justify-align {
-  background-image: url(images/icons/justify.svg);
-}
-
-.actions i.disconnect {
-  background-image: url(images/icons/plug.svg);
-}
-
-.actions i.connect {
-  background-image: url(images/icons/plug-fill.svg);
 }
 
 .table-cell-action-button-container {
